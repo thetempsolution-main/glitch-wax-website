@@ -287,3 +287,38 @@ if (contactForm) {
         formStatus.textContent = "Form validation passed. Connect this form to your email service or backend next.";
     });
 }
+
+
+/*========================================
+
+CONTACT PAGE BRAND CARD GLITCH LOOP
+
+==========================================*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    const brandCard = document.querySelector(".brand-card");
+
+    if (!brandCard) {
+        return;
+    }
+
+    const glitchDuration = 1400;
+
+    function scheduleNextGlitch() {
+        const nextDelay = Math.random() * 3000 + 2000;
+
+        window.setTimeout(function () {
+            brandCard.classList.remove("brand-glitch-active");
+            void brandCard.offsetWidth;
+            brandCard.classList.add("brand-glitch-active");
+
+            window.setTimeout(function () {
+                brandCard.classList.remove("brand-glitch-active");
+            }, glitchDuration);
+
+            scheduleNextGlitch();
+        }, nextDelay);
+    }
+
+    scheduleNextGlitch();
+});
