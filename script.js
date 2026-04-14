@@ -322,3 +322,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     scheduleNextGlitch();
 });
+
+/*========================================
+
+FEATURE VIDEO AUTOPLAY ONCE (SCROLL TRIGGER)
+
+==========================================*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector("[data-autoplay-once]");
+
+    if (!video) {
+        return;
+    }
+
+    let hasPlayed = false;
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting && !hasPlayed) {
+                hasPlayed = true;
+
+                video.play().catch(function () {
+                    // autoplay might fail silently, ignore
+                });
+
+                observer.disconnect(); // only trigger once
+            }
+        });
+    }, {
+        threshold: 0.35
+    });
+
+    observer.observe(video);
+});
