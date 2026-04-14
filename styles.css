@@ -295,12 +295,15 @@ body > *:not(.background-logo):not(#glitch-overlay) {
 
 .section-heading {
     margin-bottom: 32px;
+    text-align: center;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
     gap: 24px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .product-card {
@@ -390,6 +393,31 @@ body > *:not(.background-logo):not(#glitch-overlay) {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+
+
+/* Ensure product links feel natural */
+.order-card a {
+    display: inline-block;
+}
+
+.order-card h2 a:hover {
+    color: var(--color-primary);
+}
+
+/* Image-only hover effect for store cards */
+.order-card-image a img {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card-image a:hover img {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.order-card-image a {
+    display: block;
 }
 
 .order-card h2 {
@@ -513,6 +541,14 @@ body > *:not(.background-logo):not(#glitch-overlay) {
     .hero-media {
         order: -1;
     }
+
+    .product-page-grid {
+    grid-template-columns: 1fr;
+}
+
+.product-page-thumbnails {
+    grid-template-columns: repeat(5, 1fr);
+}
 }
 
 @media (max-width: 600px) {
@@ -541,6 +577,14 @@ body > *:not(.background-logo):not(#glitch-overlay) {
     .feature-image-small {
         min-height: 260px;
     }
+
+    .product-page-details {
+    padding: 22px;
+}
+
+.product-page-thumbnails {
+    grid-template-columns: repeat(3, 1fr);
+}
 }
 
 /* =========================
@@ -1310,7 +1354,7 @@ CONTACT FORM STYLES
 
 .social-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, auto);
     gap: 1rem;
     margin-top: 1.25rem;
     margin-bottom: 2rem;
@@ -1439,4 +1483,131 @@ CONTACT PAGE BUTTON STYLING AND EFFECTS
 
 .contact-submit-button:hover {
     background-color: var(--color-primary-hover);
+}
+
+/* =========================
+   PRODUCT PAGE STYLES
+========================= */
+
+.product-page-hero {
+    padding: 60px 0 40px;
+}
+
+.product-page-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.product-page-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.product-page-main-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.product-page-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.product-page-thumbnails img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition:
+        transform var(--transition-speed) ease,
+        border-color var(--transition-speed) ease,
+        opacity var(--transition-speed) ease;
+}
+
+.product-page-thumbnails img:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    opacity: 0.95;
+}
+
+.product-page-details {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 28px;
+}
+
+.product-page-details h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.product-page-price {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.product-page-price-note {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.product-page-tagline {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-text);
+    margin-bottom: 20px;
+}
+
+.product-page-description {
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+}
+
+.product-page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.product-info-section,
+.product-features-section,
+.product-usage-section,
+.product-warning-section {
+    padding: var(--section-padding) 0;
+}
+
+.product-warning-section .container {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 32px 24px;
+}
+
+.product-warning-section p {
+    color: var(--color-text-muted);
+    margin-bottom: 14px;
+}
+
+.product-warning-section p:last-child {
+    margin-bottom: 0;
 }
